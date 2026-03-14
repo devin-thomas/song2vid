@@ -103,25 +103,30 @@ Then open the local Vite URL shown in the terminal.
 npm run build
 ```
 
-The production-ready static output is written to `dist/`.
+The production-ready static output is written to `docs/`.
 
 ## GitHub Pages deployment
 
 This project uses a relative Vite base path (`./`), so built asset URLs work under a GitHub Pages repository subpath.
 
-Important: GitHub Pages cannot serve the raw repository root for this app, because the root `index.html` points to Vite/TypeScript source files. GitHub Pages must serve the built `dist/` output instead.
-
-This repo includes [deploy-pages.yml](./.github/workflows/deploy-pages.yml), which builds `dist/` on every push to `master` and deploys that build to GitHub Pages automatically.
+GitHub Pages should not serve the raw repository root for this app, because the root `index.html` points to Vite/TypeScript source files. Instead, Pages should serve the built `docs/` output committed to the repository.
 
 Recommended setup:
 
-1. Push the repository to GitHub.
-2. In GitHub, open `Settings -> Pages`.
-3. Set the source to `GitHub Actions`.
-4. Push to `master`.
-5. Wait for the `Deploy GitHub Pages` workflow to finish.
+1. Run `npm run build` locally.
+2. Commit the updated `docs/` folder.
+3. Push the repository to GitHub.
+4. In GitHub, open `Settings -> Pages`.
+5. Under `Build and deployment`, choose `Deploy from a branch`.
+6. Select branch `master` and folder `/docs`.
+7. Save and wait for GitHub Pages to publish the site.
 
-If you prefer not to use Actions, you can still deploy the built `dist/` folder manually to a dedicated Pages branch or another static host, but `dist/` should be treated as a build artifact rather than source.
+After that, future updates are:
+
+1. Make your code changes.
+2. Run `npm run build`.
+3. Commit both the source changes and the refreshed `docs/` output.
+4. Push to `master`.
 
 ## Browser compatibility notes
 
