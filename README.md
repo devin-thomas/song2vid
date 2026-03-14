@@ -121,6 +121,8 @@ Recommended setup:
 6. Select branch `master` and folder `/docs`.
 7. Save and wait for GitHub Pages to publish the site.
 
+The build writes a `docs/.nojekyll` file automatically so GitHub Pages serves the compiled Vite output directly instead of trying to process it as a Jekyll site.
+
 After that, future updates are:
 
 1. Make your code changes.
