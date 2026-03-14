@@ -109,18 +109,19 @@ The production-ready static output is written to `dist/`.
 
 This project uses a relative Vite base path (`./`), so built asset URLs work under a GitHub Pages repository subpath.
 
-Typical deployment flow:
+Important: GitHub Pages cannot serve the raw repository root for this app, because the root `index.html` points to Vite/TypeScript source files. GitHub Pages must serve the built `dist/` output instead.
 
-1. Push the project to a GitHub repository.
-2. Run `npm install`.
-3. Run `npm run build`.
-4. Publish the contents of `dist/` with GitHub Pages.
+This repo includes [deploy-pages.yml](./.github/workflows/deploy-pages.yml), which builds `dist/` on every push to `master` and deploys that build to GitHub Pages automatically.
 
-You can deploy `dist/` with:
+Recommended setup:
 
-- a GitHub Actions Pages workflow
-- a `gh-pages` branch
-- any static hosting flow that serves the built `dist/` folder
+1. Push the repository to GitHub.
+2. In GitHub, open `Settings -> Pages`.
+3. Set the source to `GitHub Actions`.
+4. Push to `master`.
+5. Wait for the `Deploy GitHub Pages` workflow to finish.
+
+If you prefer not to use Actions, you can still deploy the built `dist/` folder manually to a dedicated Pages branch or another static host, but `dist/` should be treated as a build artifact rather than source.
 
 ## Browser compatibility notes
 
